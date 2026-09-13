@@ -1,0 +1,45 @@
+SkillBank - Selenium test run
+python selenium_suite.py
+
+1  TC_reg-01   Pass Verify registration with valid information
+2  TC_reg-02   Pass Verify registration with an empty Name field
+3  TC_reg-03   Pass Verify registration with an empty Email field
+4  TC_reg-04   Pass Verify registration with a password shorter than 6 characters
+5  TC_reg-05   Pass Verify registration with an already registered email
+6  TC_reg-06   Pass Verify registration with all fields left empty
+7  TC_reg-07   Pass Verify registration with an invalid email format
+8  TC_reg-08   Pass Verify registration with a password of exactly 6 characters
+9  TC_reg-09   Pass Verify registration with a password of exactly 5 characters
+10 TC_reg-10   Pass Verify a new member receives the 3 starting credits
+11 TC_log-01   Pass Verify member login with valid credentials
+12 TC_log-02   Pass Verify admin login and admin-only navigation link
+13 TC_log-03   Pass Verify login with a valid email and wrong password
+14 TC_log-04   Pass Verify login with an unregistered email
+15 TC_log-05   Pass Verify login with an empty Email field
+16 TC_log-06   Pass Verify login with an empty Password field
+17 TC_log-07   Pass Verify logout ends the session
+18 TC_log-08   Pass Verify a guest cannot open the dashboard directly
+19 TC_off-01   Pass Verify creating a skill offer with valid information
+20 TC_off-02   Pass Verify creating an offer with an empty Title
+21 TC_off-03   Pass Verify creating an offer without choosing a skill
+22 TC_off-04   Pass Verify creating an offer with an empty form
+23 TC_off-05   Pass Verify editing an existing offer
+24 TC_off-06   Pass Verify deactivating an offer removes it from the public list
+25 TC_off-07   Pass Verify deleting an offer
+26 TC_off-08   Pass Verify a member cannot edit another member's offer
+27 TC_ses-01   Pass Verify a member can request a session on another member's offer
+28 TC_ses-02   Pass Verify a member cannot book their own offer
+29 TC_ses-03   Pass Verify the teacher can accept a pending request
+30 TC_ses-04   Pass Verify completing a session transfers exactly one credit
+31 TC_ses-05   Pass Verify the learner can review a completed session
+32 TC_ses-06   Pass Verify the same session cannot be reviewed twice
+33 TC_ses-07   Pass Verify a pending booking can be cancelled
+34 TC_adm-01   Pass Verify the administrator can open the admin dashboard
+35 TC_adm-02   Pass Verify a normal member cannot open the admin dashboard
+36 TC_adm-03   Pass Verify a newly registered member appears in the admin user list
+37 TC_adm-04   Pass Verify the administrator can add a new skill to the catalogue
+38 TC_adm-05   Pass Verify adding a skill with an empty name is ignored
+39 TC_adm-06   Pass Verify the administrator can delete a skill
+40 TC_adm-07   Pass Verify a member cannot open the Manage skills page
+
+40/40 passed

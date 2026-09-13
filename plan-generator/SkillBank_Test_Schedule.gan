@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SkillBank Software Test Plan" company="AIUB - SQAT" webLink="" view-date="2026-06-01" view-index="0" gantt-divider-location="380" resource-divider-location="300" version="3.2" locale="en_GB">
+    <description>Testing schedule for the SkillBank credit-based skill exchange. Durations are estimates in working days.</description>
+    <view zooming-state="default:3" id="gantt-chart"/>
+    <view id="resource-table"/>
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="1" uid="T-01" name="T-01 Requirement analysis and test planning" color="#3c7ad9" meeting="false" start="2026-06-01" duration="4" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Test lead]]></notes>
+            <depend id="2" type="2" difference="0" hardness="Strong"/>
+            <depend id="3" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="2" uid="T-02" name="T-02 Test environment setup (XAMPP, MySQL, ChromeDriver)" color="#3c7ad9" meeting="false" start="2026-06-01" duration="2" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Test lead]]></notes>
+            <depend id="5" type="2" difference="0" hardness="Strong"/>
+            <depend id="7" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="3" uid="T-03" name="T-03 Test case design, 40 cases across 5 modules" color="#8e44ad" meeting="false" start="2026-06-01" duration="6" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Test designer]]></notes>
+            <depend id="4" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="4" uid="T-04" name="T-04 Test case review and prioritisation" color="#3c7ad9" meeting="false" start="2026-06-01" duration="2" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Test lead]]></notes>
+            <depend id="6" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="5" uid="T-05" name="T-05 Automation framework build (Selenium, page helpers)" color="#16a085" meeting="false" start="2026-06-01" duration="5" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Automation engineer]]></notes>
+            <depend id="6" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="6" uid="T-06" name="T-06 Automating the 40 cases" color="#16a085" meeting="false" start="2026-06-01" duration="7" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Automation engineer]]></notes>
+            <depend id="8" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="7" uid="T-07" name="T-07 Unit testing by the developer" color="#d35400" meeting="false" start="2026-06-01" duration="4" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Developer]]></notes>
+            <depend id="8" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="8" uid="T-08" name="T-08 System and integration test execution" color="#3c7ad9" meeting="false" start="2026-06-01" duration="5" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Test lead]]></notes>
+            <depend id="9" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="9" uid="T-09" name="T-09 Defect logging, fixing and re-test" color="#d35400" meeting="false" start="2026-06-01" duration="4" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Developer, Test lead]]></notes>
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="10" uid="T-10" name="T-10 Regression run, full suite" color="#16a085" meeting="false" start="2026-06-01" duration="2" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Automation engineer]]></notes>
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="11" uid="T-11" name="T-11 Acceptance testing with representative users" color="#c0392b" meeting="false" start="2026-06-01" duration="3" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Test lead, Users]]></notes>
+            <depend id="12" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="12" uid="T-12" name="T-12 Test summary report and sign-off" color="#3c7ad9" meeting="false" start="2026-06-01" duration="3" complete="100" thirdDate="2026-06-01" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Owner: Test lead]]></notes>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Test lead" function="Default:0" contacts="" phone=""/>
+        <resource id="1" name="Test designer" function="Default:0" contacts="" phone=""/>
+        <resource id="2" name="Automation engineer" function="Default:0" contacts="" phone=""/>
+        <resource id="3" name="Developer" function="Default:0" contacts="" phone=""/>
+        <resource id="4" name="Users" function="Default:0" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="1" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="2" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="4" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="5" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="6" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="7" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="8" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="9" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="9" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="10" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="11" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="11" resource-id="4" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="12" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <taskdisplaycolumns/>
+    <roles roleset-name="Default"/>
+</project>

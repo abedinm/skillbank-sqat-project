@@ -1,0 +1,1493 @@
+[
+  {
+    "no": 1,
+    "id": "TC_reg-01",
+    "module": "Registration",
+    "title": "Verify registration with valid information",
+    "description": "Verify that a new visitor can create a SkillBank account using a valid name, email and password.",
+    "precondition": "The registration page is reachable and the email is not already in the users table.",
+    "dependencies": "Registration module, MySQL database, Chrome browser, PHP local server",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Enter valid name, email and password.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: Minhazul Abedin",
+      "Email: minhazul@skillbank.test",
+      "Password: abcd1234"
+    ],
+    "expected": "Account is created, the user is logged in automatically and the dashboard shows the welcome message with a starting balance of 3 credits.",
+    "actual": "Account created. Redirected to the dashboard with the message \"Welcome to SkillBank! You start with 3 credits.\" and a credit balance of 3.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-01_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-01_2.png",
+        "caption": "Valid registration data entered"
+      },
+      {
+        "file": "TC_reg-01_3.png",
+        "caption": "Dashboard reached after successful registration"
+      }
+    ]
+  },
+  {
+    "no": 2,
+    "id": "TC_reg-02",
+    "module": "Registration",
+    "title": "Verify registration with an empty Name field",
+    "description": "Verify that registration is rejected when the Name field is left blank.",
+    "precondition": "The registration page is reachable.",
+    "dependencies": "Registration module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Leave Name blank, enter a valid email and password.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: (blank)",
+      "Email: noname@skillbank.test",
+      "Password: abcd1234"
+    ],
+    "expected": "Registration fails and the validation message \"Name is required.\" is displayed.",
+    "actual": "Registration blocked. Error message displayed: \"Name is required.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-02_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-02_2.png",
+        "caption": "Name field left blank"
+      },
+      {
+        "file": "TC_reg-02_3.png",
+        "caption": "Validation error returned by the server"
+      }
+    ]
+  },
+  {
+    "no": 3,
+    "id": "TC_reg-03",
+    "module": "Registration",
+    "title": "Verify registration with an empty Email field",
+    "description": "Verify that registration is rejected when the Email field is left blank.",
+    "precondition": "The registration page is reachable.",
+    "dependencies": "Registration module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Enter a name and password but leave Email blank.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: Sabbir Ahmed",
+      "Email: (blank)",
+      "Password: abcd1234"
+    ],
+    "expected": "Registration fails and the validation message \"Email is required.\" is displayed.",
+    "actual": "Registration blocked. Error message displayed: \"Email is required.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-03_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-03_2.png",
+        "caption": "Email field left blank"
+      },
+      {
+        "file": "TC_reg-03_3.png",
+        "caption": "Validation error returned by the server"
+      }
+    ]
+  },
+  {
+    "no": 4,
+    "id": "TC_reg-04",
+    "module": "Registration",
+    "title": "Verify registration with a password shorter than 6 characters",
+    "description": "Verify that the minimum password length rule is enforced.",
+    "precondition": "The registration page is reachable.",
+    "dependencies": "Registration module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Enter a valid name and email with a 3-character password.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: Tanvir Hasan",
+      "Email: tanvir@skillbank.test",
+      "Password: 123"
+    ],
+    "expected": "Registration fails and the message \"Password must be at least 6 characters.\" is displayed.",
+    "actual": "Registration blocked. Error message displayed: \"Password must be at least 6 characters.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-04_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-04_2.png",
+        "caption": "Short password entered"
+      },
+      {
+        "file": "TC_reg-04_3.png",
+        "caption": "Password length error displayed"
+      }
+    ]
+  },
+  {
+    "no": 5,
+    "id": "TC_reg-05",
+    "module": "Registration",
+    "title": "Verify registration with an already registered email",
+    "description": "Verify that the system prevents two accounts from sharing one email address.",
+    "precondition": "The email ayesha@skillbank.test already exists in the users table.",
+    "dependencies": "Registration module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Enter a new name with an email that is already registered.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: Ayesha Copy",
+      "Email: ayesha@skillbank.test",
+      "Password: abcd1234"
+    ],
+    "expected": "Registration fails and the message \"That email is already registered.\" is displayed.",
+    "actual": "Registration blocked. Error message displayed: \"That email is already registered.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-05_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-05_2.png",
+        "caption": "Duplicate email entered"
+      },
+      {
+        "file": "TC_reg-05_3.png",
+        "caption": "Duplicate email error displayed"
+      }
+    ]
+  },
+  {
+    "no": 6,
+    "id": "TC_reg-06",
+    "module": "Registration",
+    "title": "Verify registration with all fields left empty",
+    "description": "Verify that submitting a completely empty registration form returns every validation message at once.",
+    "precondition": "The registration page is reachable.",
+    "dependencies": "Registration module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Leave every field blank.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: (blank)",
+      "Email: (blank)",
+      "Password: (blank)"
+    ],
+    "expected": "Registration fails and all three validation messages (name, email, password) are displayed together.",
+    "actual": "Registration blocked. Three errors displayed: Name is required. Email is required. Password must be at least 6 characters.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-06_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-06_2.png",
+        "caption": "Empty registration form"
+      },
+      {
+        "file": "TC_reg-06_3.png",
+        "caption": "All validation errors displayed"
+      }
+    ]
+  },
+  {
+    "no": 7,
+    "id": "TC_reg-07",
+    "module": "Registration",
+    "title": "Verify registration with an invalid email format",
+    "description": "Verify that the browser blocks submission when the email address has no @ symbol.",
+    "precondition": "The registration page is reachable and the email input is type=\"email\".",
+    "dependencies": "Registration module, Chrome browser (HTML5 validation)",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Enter an email address without the @ symbol.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: Rifat Karim",
+      "Email: rifatgmail.com",
+      "Password: abcd1234"
+    ],
+    "expected": "The form is not submitted and the browser reports an invalid-email validation message; the page stays on /register.",
+    "actual": "Form was not submitted. Chrome reported the validation message: \"Please include an '@' in the email address. 'rifatgmail.com' is missing an '@'.\" and the page stayed on /register.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-07_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-07_2.png",
+        "caption": "Malformed email entered"
+      },
+      {
+        "file": "TC_reg-07_3.png",
+        "caption": "Form not submitted - page is still the registration page"
+      }
+    ]
+  },
+  {
+    "no": 8,
+    "id": "TC_reg-08",
+    "module": "Registration",
+    "title": "Verify registration with a password of exactly 6 characters",
+    "description": "Boundary value test: 6 characters is the smallest accepted password.",
+    "precondition": "The registration page is reachable and the email is unused.",
+    "dependencies": "Registration module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Enter valid details with a 6-character password.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: Mila Rahman",
+      "Email: mila@skillbank.test",
+      "Password: abc123 (6 characters)"
+    ],
+    "expected": "Registration succeeds and the user is taken to the dashboard.",
+    "actual": "Registration successful with a 6-character password; dashboard displayed.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-08_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-08_2.png",
+        "caption": "Boundary password entered"
+      },
+      {
+        "file": "TC_reg-08_3.png",
+        "caption": "Dashboard reached - boundary value accepted"
+      }
+    ]
+  },
+  {
+    "no": 9,
+    "id": "TC_reg-09",
+    "module": "Registration",
+    "title": "Verify registration with a password of exactly 5 characters",
+    "description": "Boundary value test: 5 characters is one below the minimum and must be rejected.",
+    "precondition": "The registration page is reachable.",
+    "dependencies": "Registration module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page.",
+      "2. Enter valid details with a 5-character password.",
+      "3. Click Create account."
+    ],
+    "data": [
+      "Name: Nova Islam",
+      "Email: nova@skillbank.test",
+      "Password: abc12 (5 characters)"
+    ],
+    "expected": "Registration fails with the message \"Password must be at least 6 characters.\"",
+    "actual": "Registration blocked at the boundary. Error message displayed: \"Password must be at least 6 characters.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-09_1.png",
+        "caption": "Registration page opened"
+      },
+      {
+        "file": "TC_reg-09_2.png",
+        "caption": "Below-boundary password entered"
+      },
+      {
+        "file": "TC_reg-09_3.png",
+        "caption": "Password length error displayed"
+      }
+    ]
+  },
+  {
+    "no": 10,
+    "id": "TC_reg-10",
+    "module": "Registration",
+    "title": "Verify a new member receives the 3 starting credits",
+    "description": "Verify that the time-credit rule gives every new account a balance of 3 credits.",
+    "precondition": "The registration page is reachable and the email is unused.",
+    "dependencies": "Registration module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Registration page and register a new member.",
+      "2. Click Create account.",
+      "3. Read the credit balance from the page and from the database."
+    ],
+    "data": [
+      "Name: Kamrun Nahar",
+      "Email: kamrun@skillbank.test",
+      "Password: abcd1234"
+    ],
+    "expected": "The navigation bar and the dashboard both show a credit balance of 3, and the users table stores credits = 3.",
+    "actual": "Navigation shows \"Credits: 3\", the dashboard shows \"Credit balance: 3\" and the users table stores credits = 3.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_reg-10_1.png",
+        "caption": "Registration data entered"
+      },
+      {
+        "file": "TC_reg-10_2.png",
+        "caption": "Dashboard showing the starting credit balance"
+      }
+    ]
+  },
+  {
+    "no": 11,
+    "id": "TC_log-01",
+    "module": "Login",
+    "title": "Verify member login with valid credentials",
+    "description": "Verify that a registered member can sign in with the correct email and password.",
+    "precondition": "The account ayesha@skillbank.test / password123 exists.",
+    "dependencies": "Login module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Login page.",
+      "2. Enter valid member credentials.",
+      "3. Click Login."
+    ],
+    "data": [
+      "Email: ayesha@skillbank.test",
+      "Password: password123"
+    ],
+    "expected": "The member is logged in and redirected to the dashboard with the message \"Logged in.\"",
+    "actual": "Login successful. Redirected to the dashboard, navigation shows \"Hi, Ayesha\" and the flash message \"Logged in.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_log-01_1.png",
+        "caption": "Login page opened"
+      },
+      {
+        "file": "TC_log-01_2.png",
+        "caption": "Valid credentials entered"
+      },
+      {
+        "file": "TC_log-01_3.png",
+        "caption": "Dashboard reached after login"
+      }
+    ]
+  },
+  {
+    "no": 12,
+    "id": "TC_log-02",
+    "module": "Login",
+    "title": "Verify admin login and admin-only navigation link",
+    "description": "Verify that an administrator can sign in and that the Admin link appears only for the admin role.",
+    "precondition": "The account admin@skillbank.test / password123 exists with role = admin.",
+    "dependencies": "Login module, role-based access control, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Login page.",
+      "2. Enter the administrator credentials.",
+      "3. Click Login."
+    ],
+    "data": [
+      "Email: admin@skillbank.test",
+      "Password: password123"
+    ],
+    "expected": "The admin reaches the dashboard and the navigation bar contains an Admin link.",
+    "actual": "Admin logged in successfully and the Admin link is shown in the navigation bar.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_log-02_1.png",
+        "caption": "Login page opened"
+      },
+      {
+        "file": "TC_log-02_2.png",
+        "caption": "Administrator credentials entered"
+      },
+      {
+        "file": "TC_log-02_3.png",
+        "caption": "Dashboard with the Admin link visible in the navigation bar"
+      }
+    ]
+  },
+  {
+    "no": 13,
+    "id": "TC_log-03",
+    "module": "Login",
+    "title": "Verify login with a valid email and wrong password",
+    "description": "Verify that the system rejects a correct email combined with an incorrect password.",
+    "precondition": "The account ayesha@skillbank.test exists.",
+    "dependencies": "Login module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Login page.",
+      "2. Enter a valid email with an incorrect password.",
+      "3. Click Login."
+    ],
+    "data": [
+      "Email: ayesha@skillbank.test",
+      "Password: wrongpass"
+    ],
+    "expected": "Login is denied and the message \"Wrong email or password.\" is displayed.",
+    "actual": "Login denied. Error message displayed: \"Wrong email or password.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_log-03_1.png",
+        "caption": "Login page opened"
+      },
+      {
+        "file": "TC_log-03_2.png",
+        "caption": "Wrong password entered"
+      },
+      {
+        "file": "TC_log-03_3.png",
+        "caption": "Login denied with an error message"
+      }
+    ]
+  },
+  {
+    "no": 14,
+    "id": "TC_log-04",
+    "module": "Login",
+    "title": "Verify login with an unregistered email",
+    "description": "Verify that the system rejects an email address that does not exist in the database.",
+    "precondition": "The email nosuch@skillbank.test is not registered.",
+    "dependencies": "Login module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Login page.",
+      "2. Enter an unregistered email with a valid-looking password.",
+      "3. Click Login."
+    ],
+    "data": [
+      "Email: nosuch@skillbank.test",
+      "Password: password123"
+    ],
+    "expected": "Login is denied and the message \"Wrong email or password.\" is displayed.",
+    "actual": "Login denied. Error message displayed: \"Wrong email or password.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_log-04_1.png",
+        "caption": "Login page opened"
+      },
+      {
+        "file": "TC_log-04_2.png",
+        "caption": "Unregistered email entered"
+      },
+      {
+        "file": "TC_log-04_3.png",
+        "caption": "Login denied with an error message"
+      }
+    ]
+  },
+  {
+    "no": 15,
+    "id": "TC_log-05",
+    "module": "Login",
+    "title": "Verify login with an empty Email field",
+    "description": "Verify that the login form cannot be used with a blank email address.",
+    "precondition": "The login page is reachable.",
+    "dependencies": "Login module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Login page.",
+      "2. Leave Email blank and enter a password.",
+      "3. Click Login."
+    ],
+    "data": [
+      "Email: (blank)",
+      "Password: password123"
+    ],
+    "expected": "Login is denied and the message \"Wrong email or password.\" is displayed.",
+    "actual": "Login denied. The server returned \"Wrong email or password.\" Note: the email input has no HTML5 required attribute, so the browser allows the empty submission and the check happens on the server.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_log-05_1.png",
+        "caption": "Login page opened"
+      },
+      {
+        "file": "TC_log-05_2.png",
+        "caption": "Email field left blank"
+      },
+      {
+        "file": "TC_log-05_3.png",
+        "caption": "Login denied with an error message"
+      }
+    ]
+  },
+  {
+    "no": 16,
+    "id": "TC_log-06",
+    "module": "Login",
+    "title": "Verify login with an empty Password field",
+    "description": "Verify that the login form cannot be used with a blank password.",
+    "precondition": "The account ayesha@skillbank.test exists.",
+    "dependencies": "Login module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Open the Login page.",
+      "2. Enter a valid email and leave Password blank.",
+      "3. Click Login."
+    ],
+    "data": [
+      "Email: ayesha@skillbank.test",
+      "Password: (blank)"
+    ],
+    "expected": "Login is denied and the message \"Wrong email or password.\" is displayed.",
+    "actual": "Login denied. Error message displayed: \"Wrong email or password.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_log-06_1.png",
+        "caption": "Login page opened"
+      },
+      {
+        "file": "TC_log-06_2.png",
+        "caption": "Password field left blank"
+      },
+      {
+        "file": "TC_log-06_3.png",
+        "caption": "Login denied with an error message"
+      }
+    ]
+  },
+  {
+    "no": 17,
+    "id": "TC_log-07",
+    "module": "Login",
+    "title": "Verify logout ends the session",
+    "description": "Verify that after logging out the session is destroyed and the member links disappear from the navigation bar.",
+    "precondition": "A member is logged in.",
+    "dependencies": "Login module, PHP session handling, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as a member.",
+      "2. Click Logout.",
+      "3. Try to open the dashboard again."
+    ],
+    "data": [
+      "Email: ayesha@skillbank.test",
+      "Password: password123"
+    ],
+    "expected": "The navigation bar shows Login and Register again and the dashboard is no longer reachable.",
+    "actual": "Session destroyed. The navigation bar shows Login and Register, and opening /dashboard redirects to the login page.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_log-07_1.png",
+        "caption": "Logged in - navigation shows Dashboard and Logout"
+      },
+      {
+        "file": "TC_log-07_2.png",
+        "caption": "Logged out - navigation shows Login and Register"
+      },
+      {
+        "file": "TC_log-07_3.png",
+        "caption": "Dashboard blocked after logout"
+      }
+    ]
+  },
+  {
+    "no": 18,
+    "id": "TC_log-08",
+    "module": "Login",
+    "title": "Verify a guest cannot open the dashboard directly",
+    "description": "Verify that the require_login guard protects the dashboard URL against a user who is not signed in.",
+    "precondition": "No user is logged in.",
+    "dependencies": "Login module, access-control guard, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Make sure no user is logged in.",
+      "2. Type the protected dashboard URL directly in the address bar."
+    ],
+    "data": [
+      "URL: http://localhost:8003/dashboard"
+    ],
+    "expected": "The user is redirected to the login page with the message \"Please log in first.\"",
+    "actual": "Access blocked. The browser was redirected to /login and the message \"Please log in first.\" was displayed.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_log-08_1.png",
+        "caption": "Logged out state"
+      },
+      {
+        "file": "TC_log-08_2.png",
+        "caption": "Redirected to the login page with a warning message"
+      }
+    ]
+  },
+  {
+    "no": 19,
+    "id": "TC_off-01",
+    "module": "Skill Offer Management",
+    "title": "Verify creating a skill offer with valid information",
+    "description": "Verify that a logged-in member can publish a new skill offer.",
+    "precondition": "The member ayesha@skillbank.test is logged in and the skill catalogue is not empty.",
+    "dependencies": "Offer module, MySQL database, Chrome browser, PHP local server",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as a member and open the Offer a skill page.",
+      "2. Choose a skill and fill in the offer details.",
+      "3. Click Create offer."
+    ],
+    "data": [
+      "Skill: Web Development (Programming)",
+      "Title: Build your first website",
+      "Description: HTML, CSS and a live page in one sitting.",
+      "Level: Intermediate"
+    ],
+    "expected": "The offer is created, the message \"Offer created.\" is shown and the offer appears in the member's dashboard table.",
+    "actual": "Offer created successfully. The message \"Offer created.\" was shown and the offer is listed in My skill offers with status active.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_off-01_1.png",
+        "caption": "Offer a skill form opened"
+      },
+      {
+        "file": "TC_off-01_2.png",
+        "caption": "Valid offer data entered"
+      },
+      {
+        "file": "TC_off-01_3.png",
+        "caption": "Dashboard showing the newly created offer"
+      }
+    ]
+  },
+  {
+    "no": 20,
+    "id": "TC_off-02",
+    "module": "Skill Offer Management",
+    "title": "Verify creating an offer with an empty Title",
+    "description": "Verify that an offer cannot be published without a title.",
+    "precondition": "The member ayesha@skillbank.test is logged in.",
+    "dependencies": "Offer module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as a member and open the Offer a skill page.",
+      "2. Choose a skill but leave the Title empty.",
+      "3. Click Create offer."
+    ],
+    "data": [
+      "Skill: Guitar (Music)",
+      "Title: (blank)",
+      "Level: Beginner"
+    ],
+    "expected": "The offer is not created and the message \"Title is required.\" is displayed.",
+    "actual": "Offer not created. Error message displayed: \"Title is required.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_off-02_1.png",
+        "caption": "Offer a skill form opened"
+      },
+      {
+        "file": "TC_off-02_2.png",
+        "caption": "Title left blank"
+      },
+      {
+        "file": "TC_off-02_3.png",
+        "caption": "Validation error displayed"
+      }
+    ]
+  },
+  {
+    "no": 21,
+    "id": "TC_off-03",
+    "module": "Skill Offer Management",
+    "title": "Verify creating an offer without choosing a skill",
+    "description": "Verify that the skill dropdown must be used before an offer can be published.",
+    "precondition": "The member ayesha@skillbank.test is logged in.",
+    "dependencies": "Offer module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as a member and open the Offer a skill page.",
+      "2. Leave the skill dropdown on \"-- choose --\" and enter a title.",
+      "3. Click Create offer."
+    ],
+    "data": [
+      "Skill: -- choose -- (nothing selected)",
+      "Title: Cooking for students"
+    ],
+    "expected": "The offer is not created and the message \"Choose a skill.\" is displayed.",
+    "actual": "Offer not created. Error message displayed: \"Choose a skill.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_off-03_1.png",
+        "caption": "Offer a skill form opened"
+      },
+      {
+        "file": "TC_off-03_2.png",
+        "caption": "No skill selected"
+      },
+      {
+        "file": "TC_off-03_3.png",
+        "caption": "Validation error displayed"
+      }
+    ]
+  },
+  {
+    "no": 22,
+    "id": "TC_off-04",
+    "module": "Skill Offer Management",
+    "title": "Verify creating an offer with an empty form",
+    "description": "Verify that both offer validation rules fire together on an empty form.",
+    "precondition": "The member ayesha@skillbank.test is logged in.",
+    "dependencies": "Offer module, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as a member and open the Offer a skill page.",
+      "2. Click Create offer without entering anything."
+    ],
+    "data": [],
+    "expected": "The offer is not created and both \"Choose a skill.\" and \"Title is required.\" are displayed.",
+    "actual": "Offer not created. Both error messages displayed: \"Choose a skill.\" and \"Title is required.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_off-04_1.png",
+        "caption": "Empty Offer a skill form"
+      },
+      {
+        "file": "TC_off-04_2.png",
+        "caption": "Both validation errors displayed"
+      }
+    ]
+  },
+  {
+    "no": 23,
+    "id": "TC_off-05",
+    "module": "Skill Offer Management",
+    "title": "Verify editing an existing offer",
+    "description": "Verify that the owner of an offer can change its title.",
+    "precondition": "The offer \"Build your first website\" created in TC_off-01 exists and belongs to ayesha@skillbank.test.",
+    "dependencies": "Offer module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the owner and open the dashboard.",
+      "2. Click Edit on the offer created in TC_off-01.",
+      "3. Change the title and save."
+    ],
+    "data": [
+      "Old title: Build your first website",
+      "New title: Build your first website in one day"
+    ],
+    "expected": "The offer is updated, the message \"Offer updated.\" is shown and the new title appears in the dashboard.",
+    "actual": "Offer updated successfully. The message \"Offer updated.\" was shown and the dashboard lists the new title.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_off-05_1.png",
+        "caption": "Dashboard listing My skill offers"
+      },
+      {
+        "file": "TC_off-05_2.png",
+        "caption": "Edit offer form opened"
+      },
+      {
+        "file": "TC_off-05_3.png",
+        "caption": "New title entered"
+      },
+      {
+        "file": "TC_off-05_4.png",
+        "caption": "Dashboard showing the updated offer"
+      }
+    ]
+  },
+  {
+    "no": 24,
+    "id": "TC_off-06",
+    "module": "Skill Offer Management",
+    "title": "Verify deactivating an offer removes it from the public list",
+    "description": "Verify that setting an offer's status to inactive hides it from the Browse page while keeping it on the owner's dashboard.",
+    "precondition": "The offer edited in TC_off-05 exists and is active.",
+    "dependencies": "Offer module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the owner and open the edit form for the offer.",
+      "2. Change Status from active to inactive and save.",
+      "3. Open the public Browse page and check the offer is hidden."
+    ],
+    "data": [
+      "Status: inactive"
+    ],
+    "expected": "The dashboard shows status inactive and the offer no longer appears on the public Browse page.",
+    "actual": "Offer status changed to inactive in the database and the offer is no longer listed on the public Browse page.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_off-06_1.png",
+        "caption": "Edit offer form opened"
+      },
+      {
+        "file": "TC_off-06_2.png",
+        "caption": "Status set to inactive"
+      },
+      {
+        "file": "TC_off-06_3.png",
+        "caption": "Dashboard showing the offer as inactive"
+      },
+      {
+        "file": "TC_off-06_4.png",
+        "caption": "Browse page no longer lists the inactive offer"
+      }
+    ]
+  },
+  {
+    "no": 25,
+    "id": "TC_off-07",
+    "module": "Skill Offer Management",
+    "title": "Verify deleting an offer",
+    "description": "Verify that the owner can permanently delete an offer through the confirmation dialog.",
+    "precondition": "The offer created in TC_off-01 still exists.",
+    "dependencies": "Offer module, MySQL database, Chrome browser (JavaScript confirm dialog)",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the owner and open the dashboard.",
+      "2. Click Delete on the offer and accept the confirmation dialog."
+    ],
+    "data": [],
+    "expected": "The confirmation dialog appears, the message \"Offer deleted.\" is shown and the offer disappears from the dashboard and the database.",
+    "actual": "Confirmation dialog appeared and was accepted. The message \"Offer deleted.\" was shown and the row was removed from the offers table.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_off-07_1.png",
+        "caption": "Dashboard before deletion"
+      },
+      {
+        "file": "TC_off-07_2.png",
+        "caption": "Dashboard after deletion"
+      }
+    ]
+  },
+  {
+    "no": 26,
+    "id": "TC_off-08",
+    "module": "Skill Offer Management",
+    "title": "Verify a member cannot edit another member's offer",
+    "description": "Verify that the ownership guard blocks a member who types another member's offer id into the edit URL.",
+    "precondition": "Rahim owns the offer \"Acoustic guitar for starters\" and Ayesha is logged in.",
+    "dependencies": "Offer module, ownership guard, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Find the offer id that belongs to the other member.",
+      "2. Log in as a different member.",
+      "3. Type the other member's edit URL directly in the address bar."
+    ],
+    "data": [
+      "Offer owner: Rahim (rahim@skillbank.test)",
+      "URL requested: http://localhost:8003/offers/edit?id=2"
+    ],
+    "expected": "The edit form is not shown; the user is redirected to the dashboard with the message \"Offer not found or not yours.\"",
+    "actual": "Access blocked. Redirected to the dashboard with the message \"Offer not found or not yours.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_off-08_1.png",
+        "caption": "Logged in as Ayesha"
+      },
+      {
+        "file": "TC_off-08_2.png",
+        "caption": "Access blocked and redirected to the dashboard"
+      }
+    ]
+  },
+  {
+    "no": 27,
+    "id": "TC_ses-01",
+    "module": "Session Booking",
+    "title": "Verify a member can request a session on another member's offer",
+    "description": "Verify the booking flow: a learner requests a session and it becomes a pending booking for the teacher.",
+    "precondition": "Ayesha is logged in with at least 1 credit and Rahim's guitar offer is active.",
+    "dependencies": "Session module, MySQL database, Chrome browser, PHP local server",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the learner and open the teacher's offer page.",
+      "2. Pick a preferred time and submit the request."
+    ],
+    "data": [
+      "Offer: Acoustic guitar for starters (teacher: Rahim)",
+      "Preferred time: 2026-08-10 15:00"
+    ],
+    "expected": "The message \"Request sent! The teacher will accept it.\" is shown and the session is stored with status pending.",
+    "actual": "Request sent. The message \"Request sent! The teacher will accept it.\" was shown and the sessions table stores the booking with status pending.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_ses-01_1.png",
+        "caption": "Offer page with the request form"
+      },
+      {
+        "file": "TC_ses-01_2.png",
+        "caption": "Preferred time selected"
+      },
+      {
+        "file": "TC_ses-01_3.png",
+        "caption": "Request confirmation message"
+      }
+    ]
+  },
+  {
+    "no": 28,
+    "id": "TC_ses-02",
+    "module": "Session Booking",
+    "title": "Verify a member cannot book their own offer",
+    "description": "Verify that the booking form is hidden on an offer that belongs to the logged-in member, so nobody can spend credits on themselves.",
+    "precondition": "Ayesha owns the offer \"Learn Python basics\" and is logged in.",
+    "dependencies": "Session module, ownership guard, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the owner of the offer.",
+      "2. Open the member's own offer page."
+    ],
+    "data": [
+      "Offer: Learn Python basics (owner: Ayesha)"
+    ],
+    "expected": "No request form is rendered on the member's own offer page.",
+    "actual": "The \"Request session\" form is not rendered on the member's own offer page, so a self-booking cannot be submitted from the interface.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_ses-02_1.png",
+        "caption": "Own offer page - no request form is shown"
+      }
+    ]
+  },
+  {
+    "no": 29,
+    "id": "TC_ses-03",
+    "module": "Session Booking",
+    "title": "Verify the teacher can accept a pending request",
+    "description": "Verify that the teacher sees the pending booking and can move it to accepted.",
+    "precondition": "The pending session created in TC_ses-01 exists and Rahim is the teacher.",
+    "dependencies": "Session module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the teacher and open the dashboard.",
+      "2. Click Accept on the pending booking."
+    ],
+    "data": [
+      "Learner: Ayesha",
+      "Action: Accept"
+    ],
+    "expected": "The message \"Session accepted.\" is shown and the session status becomes accepted.",
+    "actual": "Request accepted. The message \"Session accepted.\" was shown and the session status changed to accepted.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_ses-03_1.png",
+        "caption": "Teacher dashboard showing the pending request"
+      },
+      {
+        "file": "TC_ses-03_2.png",
+        "caption": "Dashboard after accepting the request"
+      }
+    ]
+  },
+  {
+    "no": 30,
+    "id": "TC_ses-04",
+    "module": "Session Booking",
+    "title": "Verify completing a session transfers exactly one credit",
+    "description": "Verify the core time-banking rule: completing a session moves 1 credit from the learner to the teacher.",
+    "precondition": "The accepted session from TC_ses-03 exists; Ayesha has 3 credits and Rahim has 3.",
+    "dependencies": "Session module, credit transfer transaction, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Read both credit balances before completing the session.",
+      "2. Log in as the teacher and open the dashboard.",
+      "3. Click \"Mark completed (+1)\"."
+    ],
+    "data": [
+      "Learner balance before: 3",
+      "Teacher balance before: 3"
+    ],
+    "expected": "The learner's balance drops by 1, the teacher's balance rises by 1 and a row is written to the transactions table.",
+    "actual": "Session completed. Learner balance 3 -> 2, teacher balance 3 -> 4, and 1 row(s) recorded in the transactions table.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_ses-04_1.png",
+        "caption": "Teacher dashboard before completing (balance 3)"
+      },
+      {
+        "file": "TC_ses-04_2.png",
+        "caption": "Dashboard after completion - teacher balance increased"
+      }
+    ]
+  },
+  {
+    "no": 31,
+    "id": "TC_ses-05",
+    "module": "Session Booking",
+    "title": "Verify the learner can review a completed session",
+    "description": "Verify that after completion the learner can leave a 1-5 star review that appears on the offer page.",
+    "precondition": "The session completed in TC_ses-04 exists and has not been reviewed.",
+    "dependencies": "Review module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the learner and open the dashboard.",
+      "2. Click Leave review.",
+      "3. Choose a rating, write a comment and submit.",
+      "4. Open the offer page and confirm the rating is published."
+    ],
+    "data": [
+      "Rating: 5 - Excellent",
+      "Comment: Very clear lesson, learned three chords."
+    ],
+    "expected": "The message \"Thanks for your review!\" is shown and the offer page displays the new rating.",
+    "actual": "Review saved. The message \"Thanks for your review!\" was shown and the offer page now displays \"Rating: 5.0 / 5 (1 review)\".",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_ses-05_1.png",
+        "caption": "Dashboard showing the completed booking with a Leave review link"
+      },
+      {
+        "file": "TC_ses-05_2.png",
+        "caption": "Review form opened"
+      },
+      {
+        "file": "TC_ses-05_3.png",
+        "caption": "Review filled in"
+      },
+      {
+        "file": "TC_ses-05_4.png",
+        "caption": "Dashboard after submitting the review"
+      },
+      {
+        "file": "TC_ses-05_5.png",
+        "caption": "Offer page showing the published rating"
+      }
+    ]
+  },
+  {
+    "no": 32,
+    "id": "TC_ses-06",
+    "module": "Session Booking",
+    "title": "Verify the same session cannot be reviewed twice",
+    "description": "Verify that the review guard blocks a second review even when the review URL is typed manually.",
+    "precondition": "The session reviewed in TC_ses-05 already has one review.",
+    "dependencies": "Review module, access guard, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the learner.",
+      "2. Find the id of the already-reviewed session and open its review URL."
+    ],
+    "data": [
+      "URL requested: http://localhost:8003/sessions/review?id=1"
+    ],
+    "expected": "The review form is not shown; the user is redirected to the dashboard with the message \"You cannot review that session.\"",
+    "actual": "Second review blocked. Redirected to the dashboard with the message \"You cannot review that session.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_ses-06_1.png",
+        "caption": "Second review blocked and redirected to the dashboard"
+      }
+    ]
+  },
+  {
+    "no": 33,
+    "id": "TC_ses-07",
+    "module": "Session Booking",
+    "title": "Verify a pending booking can be cancelled",
+    "description": "Verify that a learner can cancel a booking that the teacher has not accepted yet.",
+    "precondition": "Ayesha is logged in and has at least 1 credit.",
+    "dependencies": "Session module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the learner and request a new session.",
+      "2. Open the dashboard and click Cancel on the pending booking."
+    ],
+    "data": [
+      "Offer: Acoustic guitar for starters (teacher: Rahim)"
+    ],
+    "expected": "The message \"Session cancelled.\" is shown and the session status becomes cancelled.",
+    "actual": "Booking cancelled. The message \"Session cancelled.\" was shown and the session status changed to cancelled.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_ses-07_1.png",
+        "caption": "New pending request created"
+      },
+      {
+        "file": "TC_ses-07_2.png",
+        "caption": "Dashboard showing the pending booking"
+      },
+      {
+        "file": "TC_ses-07_3.png",
+        "caption": "Dashboard after cancelling"
+      }
+    ]
+  },
+  {
+    "no": 34,
+    "id": "TC_adm-01",
+    "module": "Admin Panel",
+    "title": "Verify the administrator can open the admin dashboard",
+    "description": "Verify that a user with role = admin can reach /admin and see the platform statistics.",
+    "precondition": "The admin account exists and is logged in.",
+    "dependencies": "Admin module, role-based access control, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the administrator.",
+      "2. Click the Admin link in the navigation bar."
+    ],
+    "data": [],
+    "expected": "The admin dashboard opens and shows the Users, Offers and Completed sessions counters plus the full user table.",
+    "actual": "Admin dashboard opened successfully showing the Users / Offers / Completed sessions counters and the All users table.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_adm-01_1.png",
+        "caption": "Logged in as administrator"
+      },
+      {
+        "file": "TC_adm-01_2.png",
+        "caption": "Admin dashboard with statistics and the user table"
+      }
+    ]
+  },
+  {
+    "no": 35,
+    "id": "TC_adm-02",
+    "module": "Admin Panel",
+    "title": "Verify a normal member cannot open the admin dashboard",
+    "description": "Verify that the require_admin guard blocks a member who types the /admin URL.",
+    "precondition": "A member (not an admin) is logged in.",
+    "dependencies": "Admin module, role-based access control, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as a normal member.",
+      "2. Type the admin URL directly in the address bar."
+    ],
+    "data": [
+      "URL requested: http://localhost:8003/admin"
+    ],
+    "expected": "The member is redirected to the Browse page with the message \"Admins only.\"",
+    "actual": "Access blocked. Redirected to the Browse page with the message \"Admins only.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_adm-02_1.png",
+        "caption": "Logged in as a normal member - no Admin link in the navigation bar"
+      },
+      {
+        "file": "TC_adm-02_2.png",
+        "caption": "Access blocked and redirected to the Browse page"
+      }
+    ]
+  },
+  {
+    "no": 36,
+    "id": "TC_adm-03",
+    "module": "Admin Panel",
+    "title": "Verify a newly registered member appears in the admin user list",
+    "description": "Verify that the account created in TC_reg-01 is visible to the administrator with the correct role and credit balance.",
+    "precondition": "TC_reg-01 has been executed and the admin is logged in.",
+    "dependencies": "Admin module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the administrator and open the admin dashboard.",
+      "2. Look up the account registered in TC_reg-01."
+    ],
+    "data": [
+      "Email searched: minhazul@skillbank.test"
+    ],
+    "expected": "The All users table contains minhazul@skillbank.test with role member and 3 credits.",
+    "actual": "The user table contains the row: 4 Minhazul Abedin minhazul@skillbank.test member 3",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_adm-03_1.png",
+        "caption": "Admin dashboard user table"
+      }
+    ]
+  },
+  {
+    "no": 37,
+    "id": "TC_adm-04",
+    "module": "Admin Panel",
+    "title": "Verify the administrator can add a new skill to the catalogue",
+    "description": "Verify skill creation from the Manage skills page.",
+    "precondition": "The admin is logged in and the skill does not already exist.",
+    "dependencies": "Admin module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the administrator and open Manage skills.",
+      "2. Enter a new skill name and category.",
+      "3. Click Add skill."
+    ],
+    "data": [
+      "Skill name: Data Analysis",
+      "Category: Programming"
+    ],
+    "expected": "The message \"Skill added.\" is shown and the new skill appears in the table.",
+    "actual": "Skill created. The message \"Skill added.\" was shown and \"Data Analysis / Programming\" now appears in the skills table.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_adm-04_1.png",
+        "caption": "Manage skills page opened"
+      },
+      {
+        "file": "TC_adm-04_2.png",
+        "caption": "New skill details entered"
+      },
+      {
+        "file": "TC_adm-04_3.png",
+        "caption": "Skill list containing the new skill"
+      }
+    ]
+  },
+  {
+    "no": 38,
+    "id": "TC_adm-05",
+    "module": "Admin Panel",
+    "title": "Verify adding a skill with an empty name is ignored",
+    "description": "Verify that submitting the Add skill form with a blank name does not create an empty catalogue entry.",
+    "precondition": "The admin is logged in on the Manage skills page.",
+    "dependencies": "Admin module, MySQL database, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the administrator and open Manage skills.",
+      "2. Leave the skill name blank, type only a category and click Add skill."
+    ],
+    "data": [
+      "Skill name: (blank)",
+      "Category: General",
+      "Skills before: 7"
+    ],
+    "expected": "No skill is created and the number of rows in the skills table is unchanged.",
+    "actual": "No skill was created. The table still holds 7 skills and no success message was displayed.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_adm-05_1.png",
+        "caption": "Manage skills page with 7 skills"
+      },
+      {
+        "file": "TC_adm-05_2.png",
+        "caption": "Blank skill name entered"
+      },
+      {
+        "file": "TC_adm-05_3.png",
+        "caption": "Skill list unchanged after the empty submission"
+      }
+    ]
+  },
+  {
+    "no": 39,
+    "id": "TC_adm-06",
+    "module": "Admin Panel",
+    "title": "Verify the administrator can delete a skill",
+    "description": "Verify skill deletion through the confirmation dialog on the Manage skills page.",
+    "precondition": "The skill \"Data Analysis\" created in TC_adm-04 exists.",
+    "dependencies": "Admin module, MySQL database, Chrome browser (JavaScript confirm dialog)",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as the administrator and open Manage skills.",
+      "2. Click Delete on the \"Data Analysis\" row and accept the dialog."
+    ],
+    "data": [
+      "Skill deleted: Data Analysis"
+    ],
+    "expected": "The confirmation dialog appears, the message \"Skill deleted.\" is shown and the row disappears from the table.",
+    "actual": "Confirmation dialog appeared and was accepted. The message \"Skill deleted.\" was shown and the row was removed from the skills table.",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_adm-06_1.png",
+        "caption": "Manage skills page before deletion"
+      },
+      {
+        "file": "TC_adm-06_2.png",
+        "caption": "Skill list after deletion"
+      }
+    ]
+  },
+  {
+    "no": 40,
+    "id": "TC_adm-07",
+    "module": "Admin Panel",
+    "title": "Verify a member cannot open the Manage skills page",
+    "description": "Verify that the second admin route is protected by the same role guard.",
+    "precondition": "A member (not an admin) is logged in.",
+    "dependencies": "Admin module, role-based access control, Chrome browser",
+    "priority": "High",
+    "designer": "Minhazul Abedin",
+    "design_date": "02/08/2026",
+    "exec_date": "02/08/2026",
+    "steps": [
+      "1. Log in as a normal member.",
+      "2. Type the Manage skills URL directly in the address bar."
+    ],
+    "data": [
+      "URL requested: http://localhost:8003/admin/skills"
+    ],
+    "expected": "The member is redirected to the Browse page with the message \"Admins only.\"",
+    "actual": "Access blocked. Redirected to the Browse page with the message \"Admins only.\"",
+    "status": "Pass",
+    "shots": [
+      {
+        "file": "TC_adm-07_1.png",
+        "caption": "Logged in as a normal member"
+      },
+      {
+        "file": "TC_adm-07_2.png",
+        "caption": "Access blocked and redirected to the Browse page"
+      }
+    ]
+  }
+]
